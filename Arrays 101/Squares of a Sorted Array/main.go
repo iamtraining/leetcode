@@ -3,32 +3,31 @@ package main
 import "fmt"
 
 func main() {
-	arr1 := []int{-4, -1, 0, 3, 10}
-	arr2 := []int{-7, -3, 2, 3, 11}
+	arr := []int{-4, -1, 0, 3, 10}
+	arr1 := []int{-7, -3, 2, 3, 11}
+	fmt.Println(sortedSquares(arr))
 	fmt.Println(sortedSquares(arr1))
-	fmt.Println(sortedSquares(arr2))
 }
 
 func sortedSquares(A []int) []int {
-	lA := len(A)
+	lenA := len(A)
 	for _, num := range A {
 		A = append(A, num*num)
 	}
-	return quicksort(A[lA:])
+	return quicksort(A[lenA:])
 }
 
-func quicksort(nums []int) []int {
-	if len(nums) < 2 {
-		return nums
+func quicksort(arr []int) []int {
+	if len(arr) < 2 {
+		return arr
 	} else {
-		basis, less, greater := nums[0], []int{}, []int{}
-		for _, num := range nums[1:] {
-			if num < basis {
+		basis, less, greater := arr[0], []int{}, []int{}
+		for _, num := range arr[1:] {
+			if basis > num {
 				less = append(less, num)
 			} else {
 				greater = append(greater, num)
 			}
-
 		}
 		less = quicksort(less)
 		less = append(less, basis)
